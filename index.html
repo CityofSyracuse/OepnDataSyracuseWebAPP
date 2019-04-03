@@ -53,10 +53,12 @@
         //Input Address API connectin + Limit 5 results
         var src = [];
         var addresses = [];
-        $.getJSON('https://services6.arcgis.com/bdPqSfflsdgFRVVM/arcgis/rest/services/Code_violations/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json',
+        $.getJSON('https://services6.arcgis.com/bdPqSfflsdgFRVVM/arcgis/rest/services/parcel_data_august_2017/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json',
+        //was "https://services6.arcgis.com/bdPqSfflsdgFRVVM/arcgis/rest/services/Code_violations/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json"
             d => {
                 d.features.forEach(feature => {
-                    addresses.push(feature.attributes.property_address);
+                    addresses.push(feature.attributes.FullAdd);
+                    //was "feature.attributes.property_address"
                 });
                 src = $.unique(addresses).map(e => e);
                 $("#searchInput").autocomplete({
